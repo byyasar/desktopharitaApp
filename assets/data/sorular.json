@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "image": "safranbolu.jpg",
+        "bilgi": "Karadeniz kıyılarını, Batı, Kuzey ve Orta Anadolu’ya bağlayan yol üzerinde yer alan tarihi Safranbolu Şehri, coğrafi konumu nedeniyle çok eski devirlerden beri yerleşim görmektedir. 14. yy.ın başlarından bu yana Türklerin hakimiyetinde olan Safranbolu, özellikle 18. yüzyılda Asya ve Avrupa arasındaki ticaretin önemli bir merkezi olmuştur. Türk kentsel tarihinin bozulmamış bir örneği olan bu şehir, geleneksel şehir dokusu, ahşap yığma evleri ve anıtsal yapılarıyla bütünü sit ilan edilmiş ender kentlerden biri olarak UNESCO Dünya Miras Listesi’nde yer almaktadır.",
+        "secenekler": [
+            "Troya Antik Kenti",
+            "Safranbolu Şehri",
+            "Xanthos-Letoon",
+            "Afrodisias"
+        ],
+        "cevap": "Safranbolu Şehri",
+        "sehir": "Karabük"
+    },
+    {
+        "id": 2,
+        "image": "truva.jpg",
+        "bilgi": "Troya, dünyadaki en ünlü antik kentlerden birisidir. Troya’da görülen 9 katman, kesintisiz olarak 3000 yıldan fazla bir zamanı göstermekte ve Anadolu, Ege ve Balkanların buluştuğu bu benzersiz coğrafyada yerleşmiş olan uygarlıkları izlememizi sağlamaktadır. Troya’daki en erken yerleşim katı M.Ö. 3000-2500 ile erken Tunç Çağı’na tarihlenmektedir, daha sonra sürekli yerleşim gören Troya katmanları M.Ö. 85 – M.S. 8. yüzyıla tarihlenen Roma Dönemi ile sona ermektedir. Troya, bulunduğu coğrafi konum nedeniyle burada hüküm süren uygarlıkların diğer bölgelerle ticari ve kültürel bağlantıları açısından daima çok önemli bir rol üstlenmiştir. Troya ayrıca gösterdiği kesintisiz katmanlaşma ile Avrupa ve Ege’deki diğer arkeolojik alanlar için referans görevi görmektedir. İlk olarak 1871’de Heinrich Schliemann, daha sonra W. Dörpfeld, C.W Blegen tarafından kazılmış olan bu görkemli arkeolojik şehirde kazılar halen sürdürülmektedir.",
+        "secenekler": [
+            "Troya Antik Kenti",
+            "Xanthos-Letoon",
+            "Safranbolu Şehri",
+            "Afrodisias"
+        ],
+        "cevap": "Troya Antik Kenti",
+        "sehir": "Çanakkale"
+    },
+    {
+        "id": 3,
+        "image": "afrodisias.png",
+        "bilgi": "Menderes (Meander) Irmağı’nın bir kolu olan Dandalaz (Morsynus) Çayı’nın oluşturduğu bereketli vadide, denizden yaklaşık 600 metre yükseklikte bir plato üzerinde yer almaktadır. Tarih boyunca, içinde bulunduğu nehir havzasının doğal özelliklerinden beslenen kentin Antik Dönem’deki en büyük zenginlik kaynağını ise kentin kuzeyinde, Babadağ eteklerinde yer alan mermer ocakları sağlamıştır.",
+        "secenekler": [
+            "Troya Antik Kenti",
+            "Afrodisias",
+            "Xanthos-Letoon",
+            "Safranbolu Şehri"
+        ],
+        "cevap": "Afrodisias",
+        "sehir": "Aydın"
+    }
+]
