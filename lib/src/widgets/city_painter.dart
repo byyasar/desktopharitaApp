@@ -67,13 +67,13 @@ class CityPainter extends CustomPainter {
             city.title == "Gümüşhane" ||
             city.title == "Karaman"
         ? yukari = 12.0
-        : city.title == "Muğla" || city.title == "Burdur"
+        : city.title == "Muğla" ||
+                city.title == "Burdur" 
             ? yukari = 14.0
             : city.title == "İzmir" ||
                     city.title == "Balıkesir" ||
                     city.title == "Osmaniye" ||
                     city.title == "Çanakkale" ||
-                    city.title == "Erzincan" ||
                     city.title == "Edirne"
                 ? yukari = -10.0
                 : yukari = 0;
