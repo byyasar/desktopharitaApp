@@ -10,35 +10,38 @@ class AnaPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: context.dynamicWidth(1),
+        height: context.dynamicHeight(1),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              child: Image.asset("assets/images/logo.png"),
+              //color: Colors.redAccent,
+              width: context.dynamicWidth(.8),
+              height: context.dynamicHeight(.2),
+              child: FittedBox(
+                  fit: BoxFit.fitHeight,
+                  child: Image.asset("assets/images/logo.png")),
             ),
-            SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const SizedBox(height: 40),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 "Kültürel miraslarımız uygulamasına hoş geldiniz.\n Ne? Nerede? hazır mısın?",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 36),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Container(
               //color: Colors.white,
               //width: 300,
               child: ButtonWidget(
                 butonText: "Başlayalım",
                 butonColor: Colors.blueAccent,
-                ebat: Size(220, 30),
+                ebat: const Size(220, 30),
                 radius: 10,
                 fontsize: 24,
-                butonIcon: Icon(
-                  Icons.star_outline,
-                  color: Colors.white,
-                ),
+                butonIcon: const Icon(Icons.star_outline, color: Colors.white),
                 onPressed: () {
                   Navigator.pushNamed(context, "/soru");
                 },

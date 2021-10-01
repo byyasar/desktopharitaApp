@@ -48,6 +48,11 @@ class _HaritaPageState extends State<HaritaPage> {
         ],
       ),
       body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.black12, Colors.black45])),
         alignment: Alignment.center,
         height: context.dynamicHeight(1),
         width: context.dynamicWidth(1),
@@ -88,9 +93,12 @@ class _HaritaPageState extends State<HaritaPage> {
     );
   }
 }
-Future<void> sesCal(bool durum) async{
+
+Future<void> sesCal(bool durum) async {
   AudioCache player = AudioCache(prefix: 'assets/sounds/');
-   durum == true ?await player.play('alkis.mp3') : await player.play('yanlis.mp3');
+  durum == true
+      ? await player.play('alkis.mp3')
+      : await player.play('yanlis.mp3');
 }
 
 Future<void> _showMyDialog(BuildContext context, bool dogrumu) async {

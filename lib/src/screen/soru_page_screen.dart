@@ -49,11 +49,18 @@ class _SoruPageState extends State<SoruPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.orange.shade500,
       floatingActionButton: _floatingActionButton,
       appBar: _appBar(context),
-      body: sorular.length == 0
-          ? Center(child: CircularProgressIndicator())
-          : _container(context, sorular, rastgelesayi),
+      body: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.bottomRight,
+                  end: Alignment.topLeft,
+                  colors: [Colors.black12, Colors.black45])),
+          child: sorular.isEmpty
+              ? const Center(child: CircularProgressIndicator())
+              : _container(context, sorular, rastgelesayi)),
     );
   }
 
@@ -61,10 +68,7 @@ class _SoruPageState extends State<SoruPage> {
     return FloatingActionButton(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Yenile"),
-            Icon(Icons.refresh),
-          ],
+          children: const [Text("Yenile"), Icon(Icons.refresh)],
         ),
         onPressed: () {
           yenile;
@@ -81,13 +85,19 @@ Container _container(BuildContext context, List? sorular, int? rastgelesayi) {
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: context.dynamicWidth(.64),
             child: soltaraf(context, sorular, rastgelesayi),
           ),
           Container(
+            color: Colors.blueAccent,
+            width: 5,
+          ),
+          Container(
+            //color: Colors.amberAccent,
             width: context.dynamicWidth(.34),
             child: sagtaraf(context, sorular, rastgelesayi),
           ),
@@ -98,53 +108,51 @@ Container _container(BuildContext context, List? sorular, int? rastgelesayi) {
 }
 
 sagtaraf(BuildContext context, List testSorular, int rastgelesayi) {
-  return Center(
-    child: ListView.builder(
-      shrinkWrap: true,
-      itemCount: testSorular[rastgelesayi]["secenekler"].length,
-      itemBuilder: (BuildContext context, int i) => Container(
-        height: 80,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ButtonWidget(
-              //ebat: Size(context.dynamicWidth(.01), 50),
-              fontsize: 24,
-              butonColor: Colors.blueAccent,
-              butonIcon: Icon(Icons.circle, color: Colors.white),
-              butonText: i == 0
-                  ? "A-" + testSorular[rastgelesayi]["secenekler"][i].toString()
-                  : i == 1
-                      ? "B-" +
-                          testSorular[rastgelesayi]["secenekler"][i].toString()
-                      : i == 2
-                          ? "C-" +
-                              testSorular[rastgelesayi]["secenekler"][i]
-                                  .toString()
-                          : "D-" +
-                              testSorular[rastgelesayi]["secenekler"][i]
-                                  .toString(),
-              onPressed: () {
-                print("cevap seçenek ${testSorular[rastgelesayi]["cevap"]}");
-                print(
-                    "cevap seçenek ${testSorular[rastgelesayi]["secenekler"][i]}");
-                print(i);
-                if (testSorular[rastgelesayi]["cevap"] ==
-                    testSorular[rastgelesayi]["secenekler"][i]) {
-                  sesCal(true);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HaritaPage(
-                        cevap: testSorular[rastgelesayi]["sehir"],
-                      ),
+  return ListView.builder(
+    shrinkWrap: true,
+    itemCount: testSorular[rastgelesayi]["secenekler"].length,
+    itemBuilder: (BuildContext context, int i) => Container(
+      height: 80,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ButtonWidget(
+            //ebat: Size(context.dynamicWidth(.01), 50),
+            fontsize: 24,
+            butonColor: Colors.blueAccent,
+            butonIcon: Icon(Icons.circle, color: Colors.white),
+            butonText: i == 0
+                ? "A-" + testSorular[rastgelesayi]["secenekler"][i].toString()
+                : i == 1
+                    ? "B-" +
+                        testSorular[rastgelesayi]["secenekler"][i].toString()
+                    : i == 2
+                        ? "C-" +
+                            testSorular[rastgelesayi]["secenekler"][i]
+                                .toString()
+                        : "D-" +
+                            testSorular[rastgelesayi]["secenekler"][i]
+                                .toString(),
+            onPressed: () {
+              print("cevap seçenek ${testSorular[rastgelesayi]["cevap"]}");
+              print(
+                  "cevap seçenek ${testSorular[rastgelesayi]["secenekler"][i]}");
+              print(i);
+              if (testSorular[rastgelesayi]["cevap"] ==
+                  testSorular[rastgelesayi]["secenekler"][i]) {
+                sesCal(true);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HaritaPage(
+                      cevap: testSorular[rastgelesayi]["sehir"],
                     ),
-                  );
-                } else {sesCal(false);
-                  _showMyDialog(context, false);
-                  
-                }
-              }),
-        ),
+                  ),
+                );
+              } else {
+                sesCal(false);
+                _showMyDialog(context, false);
+              }
+            }),
       ),
     ),
   );
@@ -180,6 +188,7 @@ Container _imageContainer(
   return Container(
     margin: EdgeInsets.all(5),
     width: double.infinity,
+    //height: double.infinity,
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
@@ -189,10 +198,19 @@ Container _imageContainer(
           offset: Offset(0, 2),
         ),
       ],
-      borderRadius: BorderRadius.circular(10.0),
-      color: Colors.white,
+      borderRadius: BorderRadius.circular(20.0),
+      color: Colors.blueAccent,
     ),
-    child: Image.asset("assets/images/${sorular![rastgelesayi!]["image"]}"),
+    child: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: FittedBox(
+            fit: BoxFit.fill,
+            child: Image.asset(
+                "assets/images/${sorular![rastgelesayi!]["image"]}")),
+      ),
+    ),
   );
 }
 
@@ -201,9 +219,11 @@ _appBar(
 ) =>
     AppBar(title: Text('Kültürel mirasın adı ne?'));
 
-Future<void> sesCal(bool durum) async{
+Future<void> sesCal(bool durum) async {
   AudioCache player = AudioCache(prefix: 'assets/sounds/');
-   durum == true ?await player.play('dogru.mp3') : await player.play('yanlis.mp3');
+  durum == true
+      ? await player.play('dogru.mp3')
+      : await player.play('yanlis.mp3');
 }
 
 Future<void> _showMyDialog(BuildContext context, bool dogrumu) async {

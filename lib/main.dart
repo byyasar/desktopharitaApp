@@ -5,7 +5,7 @@ import 'package:haritaapp/src/screen/ses_cal.dart';
 import 'package:haritaapp/src/screen/soru_page_screen.dart';
 
 void main() {
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -13,9 +13,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     String? _sehir;
-    
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
