@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:haritaapp/city_picker_from_map.dart';
@@ -23,14 +25,14 @@ class _HaritaPageState extends State<HaritaPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            Text('Kültürel mirasımız hangi şehirde?'),
-            Text(' ---> '),
+            const Text('Kültürel mirasımız hangi şehirde?'),
+            const Text(' ---> '),
             Text('Seçilen Şehir: ${selectedCity?.title ?? '(?)'}'),
           ],
         ),
         actions: [
           IconButton(
-              icon: Icon(Icons.delete, color: Colors.red),
+              icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: () {
                 _mapKey.currentState?.clearSelect();
                 setState(() {
@@ -38,11 +40,11 @@ class _HaritaPageState extends State<HaritaPage> {
                 });
               }),
           IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
+              icon: const Icon(Icons.home, color: Colors.white),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AnaPage()),
+                  MaterialPageRoute(builder: (context) => const AnaPage()),
                 );
               })
         ],
@@ -52,7 +54,7 @@ class _HaritaPageState extends State<HaritaPage> {
             gradient: LinearGradient(
                 begin: Alignment.bottomRight,
                 end: Alignment.topLeft,
-                colors: [Colors.black12, Colors.black45])),
+                colors: [Colors.white, Colors.white10])),
         alignment: Alignment.center,
         height: context.dynamicHeight(1),
         width: context.dynamicWidth(1),
@@ -71,8 +73,8 @@ class _HaritaPageState extends State<HaritaPage> {
                 //print("Gelen şehir ${widget.cevap}");
                 setState(() {
                   selectedCity = city;
-                  print('seçilen şehir ' + city!.title.toString());
-                  print("Gelen şehir ${widget.cevap}");
+                  debugPrint('seçilen şehir ' + city!.title.toString());
+                  debugPrint("Gelen şehir ${widget.cevap}");
                   if ("${widget.cevap}" == city.title.toString()) {
                     sesCal(true);
                     _showMyDialog(context, true);
@@ -96,9 +98,12 @@ class _HaritaPageState extends State<HaritaPage> {
 
 Future<void> sesCal(bool durum) async {
   AudioCache player = AudioCache(prefix: 'assets/sounds/');
-  durum == true
-      ? await player.play('alkis.mp3')
-      : await player.play('yanlis.mp3');
+
+  if (!Platform.isWindows) {
+    durum == true
+        ? await player.play('alkis.mp3')
+        : await player.play('yanlis.mp3');
+  }
 }
 
 Future<void> _showMyDialog(BuildContext context, bool dogrumu) async {
@@ -115,8 +120,8 @@ Future<void> _showMyDialog(BuildContext context, bool dogrumu) async {
           child: ListBody(
             children: <Widget>[
               dogrumu == true
-                  ? Text("Doğru cevap.", style: TextStyle(fontSize: 24))
-                  : Text("Lütfen tekrar deneyin.",
+                  ? const Text("Doğru cevap.", style: TextStyle(fontSize: 24))
+                  : const Text("Lütfen tekrar deneyin.",
                       style: TextStyle(fontSize: 24)),
             ],
           ),

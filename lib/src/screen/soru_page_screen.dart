@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:haritaapp/src/widgets/custom_buton.dart';
 import 'package:kartal/kartal.dart';
 
 class SoruPage extends StatefulWidget {
-  SoruPage({Key? key}) : super(key: key);
+  const SoruPage({Key? key}) : super(key: key);
 
   @override
   _SoruPageState createState() => _SoruPageState();
@@ -35,14 +36,14 @@ class _SoruPageState extends State<SoruPage> {
       sorusayisi = sorular.length;
       //print("sorusayısı ${sorusayisi!}");
       rastgelesayi = Random().nextInt(sorusayisi!);
-      print("random ${rastgelesayi!}");
+      //print("random ${rastgelesayi!}");
     });
   }
 
   get yenile {
     setState(() {
       rastgelesayi = Random().nextInt(sorular.length);
-      print("random ${rastgelesayi!}");
+      //print("random ${rastgelesayi!}");
     });
   }
 
@@ -57,7 +58,7 @@ class _SoruPageState extends State<SoruPage> {
               gradient: LinearGradient(
                   begin: Alignment.bottomRight,
                   end: Alignment.topLeft,
-                  colors: [Colors.black12, Colors.black45])),
+                  colors: [Colors.white, Colors.white10])),
           child: sorular.isEmpty
               ? const Center(child: CircularProgressIndicator())
               : _container(context, sorular, rastgelesayi)),
@@ -77,8 +78,8 @@ class _SoruPageState extends State<SoruPage> {
 }
 
 Container _container(BuildContext context, List? sorular, int? rastgelesayi) {
-  print("gelensorular ${sorular!.length}");
-  print("gelen raste ${rastgelesayi!}");
+  debugPrint("gelensorular ${sorular!.length}");
+  debugPrint("gelen raste ${rastgelesayi!}");
 
   return Container(
     //color: Colors.blueAccent.shade100,
@@ -88,7 +89,7 @@ Container _container(BuildContext context, List? sorular, int? rastgelesayi) {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             width: context.dynamicWidth(.64),
             child: soltaraf(context, sorular, rastgelesayi),
           ),
@@ -96,7 +97,7 @@ Container _container(BuildContext context, List? sorular, int? rastgelesayi) {
             color: Colors.blueAccent,
             width: 5,
           ),
-          Container(
+          SizedBox(
             //color: Colors.amberAccent,
             width: context.dynamicWidth(.34),
             child: sagtaraf(context, sorular, rastgelesayi),
@@ -111,7 +112,7 @@ sagtaraf(BuildContext context, List testSorular, int rastgelesayi) {
   return ListView.builder(
     shrinkWrap: true,
     itemCount: testSorular[rastgelesayi]["secenekler"].length,
-    itemBuilder: (BuildContext context, int i) => Container(
+    itemBuilder: (BuildContext context, int i) => SizedBox(
       height: 80,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -119,7 +120,7 @@ sagtaraf(BuildContext context, List testSorular, int rastgelesayi) {
             //ebat: Size(context.dynamicWidth(.01), 50),
             fontsize: 24,
             butonColor: Colors.blueAccent,
-            butonIcon: Icon(Icons.circle, color: Colors.white),
+            butonIcon: const Icon(Icons.circle, color: Colors.white),
             butonText: i == 0
                 ? "A-" + testSorular[rastgelesayi]["secenekler"][i].toString()
                 : i == 1
@@ -133,10 +134,10 @@ sagtaraf(BuildContext context, List testSorular, int rastgelesayi) {
                             testSorular[rastgelesayi]["secenekler"][i]
                                 .toString(),
             onPressed: () {
-              print("cevap seçenek ${testSorular[rastgelesayi]["cevap"]}");
-              print(
+              debugPrint("cevap seçenek ${testSorular[rastgelesayi]["cevap"]}");
+              debugPrint(
                   "cevap seçenek ${testSorular[rastgelesayi]["secenekler"][i]}");
-              print(i);
+              //debugPrint(i);
               if (testSorular[rastgelesayi]["cevap"] ==
                   testSorular[rastgelesayi]["secenekler"][i]) {
                 sesCal(true);
@@ -165,7 +166,7 @@ soltaraf(BuildContext context, List sorular, int rastgelesayi) {
         flex: 12,
         child: _imageContainer(context, sorular, rastgelesayi),
       ),
-      Spacer(flex: 1),
+      const Spacer(flex: 1),
       Expanded(
         flex: 8,
         child: SingleChildScrollView(
@@ -174,7 +175,7 @@ soltaraf(BuildContext context, List sorular, int rastgelesayi) {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
               sorular[rastgelesayi]["bilgi"],
-              style: TextStyle(color: Colors.black, fontSize: 20),
+              style: const TextStyle(color: Colors.black, fontSize: 20),
             ),
           ),
         ),
@@ -186,7 +187,7 @@ soltaraf(BuildContext context, List sorular, int rastgelesayi) {
 Container _imageContainer(
     BuildContext context, List? sorular, int? rastgelesayi) {
   return Container(
-    margin: EdgeInsets.all(5),
+    margin: const EdgeInsets.all(5),
     width: double.infinity,
     //height: double.infinity,
     decoration: BoxDecoration(
@@ -195,7 +196,7 @@ Container _imageContainer(
           color: Colors.grey.withOpacity(0.5),
           spreadRadius: 2,
           blurRadius: 2,
-          offset: Offset(0, 2),
+          offset: const Offset(0, 2),
         ),
       ],
       borderRadius: BorderRadius.circular(20.0),
@@ -217,13 +218,15 @@ Container _imageContainer(
 _appBar(
   BuildContext context,
 ) =>
-    AppBar(title: Text('Kültürel mirasın adı ne?'));
+    AppBar(title: const Text('Kültürel mirasın adı ne?'));
 
 Future<void> sesCal(bool durum) async {
   AudioCache player = AudioCache(prefix: 'assets/sounds/');
-  durum == true
-      ? await player.play('dogru.mp3')
-      : await player.play('yanlis.mp3');
+  if (!Platform.isWindows) {
+    durum == true
+        ? await player.play('dogru.mp3')
+        : await player.play('yanlis.mp3');
+  }
 }
 
 Future<void> _showMyDialog(BuildContext context, bool dogrumu) async {
@@ -240,8 +243,8 @@ Future<void> _showMyDialog(BuildContext context, bool dogrumu) async {
           child: ListBody(
             children: <Widget>[
               dogrumu == true
-                  ? Text("Doğru cevap.", style: TextStyle(fontSize: 24))
-                  : Text("Lütfen tekrar deneyin.",
+                  ? const Text("Doğru cevap.", style: TextStyle(fontSize: 24))
+                  : const Text("Lütfen tekrar deneyin.",
                       style: TextStyle(fontSize: 24)),
             ],
           ),
