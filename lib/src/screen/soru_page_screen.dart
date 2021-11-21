@@ -163,8 +163,14 @@ soltaraf(BuildContext context, List sorular, int rastgelesayi) {
   return Column(
     children: [
       Expanded(
-        flex: 12,
-        child: _imageContainer(context, sorular, rastgelesayi),
+        flex: 10,
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: AspectRatio(
+            aspectRatio: 16 / 10,
+            child: _imageContainer(context, sorular, rastgelesayi),
+          ),
+        ),
       ),
       const Spacer(flex: 1),
       Expanded(
@@ -222,11 +228,9 @@ _appBar(
 
 Future<void> sesCal(bool durum) async {
   AudioCache player = AudioCache(prefix: 'assets/sounds/');
-  if (!Platform.isWindows) {
-    durum == true
-        ? await player.play('dogru.mp3')
-        : await player.play('yanlis.mp3');
-  }
+  durum == true
+      ? await player.play('dogru.mp3')
+      : await player.play('yanlis.mp3');
 }
 
 Future<void> _showMyDialog(BuildContext context, bool dogrumu) async {
