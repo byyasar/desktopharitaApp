@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Kültürel Miralarımız',
+      title: 'Kültürel Miraslarımız',
       //home: MainPage(),
       //theme: ThemeData.light(),
       initialRoute: "/",
